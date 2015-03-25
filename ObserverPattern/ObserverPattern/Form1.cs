@@ -13,25 +13,12 @@ namespace ObserverPattern
     public partial class Form1 : Form
     {
         GameControler Game;
-        TeamControler Team;
-        Player 熊大;
-        Player 兔兔;
-        Player 莎莉;
-        Player 饅頭人;
+
         public Form1()
         {
             InitializeComponent();
             Game = new GameControler();
-            Team = TeamControler.Create();
-            熊大 = new 熊大() { Life = 10, Name = "熊大", Status = true };
-            兔兔 = new 兔兔() { Life = 7, Name = "兔兔", Status = true };
-            莎莉 = new 莎莉() { Life = 5, Name = "莎莉", Status = true };
-            饅頭人 = new 饅頭人() { Life = 20, Name = "饅頭人", Status = true };
 
-            Game.AddPlayer(熊大);
-            Game.AddPlayer(兔兔);
-            Game.AddPlayer(莎莉);
-            Game.AddPlayer(饅頭人);
 
             UpdateStatus();
         }
@@ -47,15 +34,15 @@ namespace ObserverPattern
                 }
             }
 
-            label兔兔生命.Text = 兔兔.Life.ToString();
-            label熊大生命.Text = 熊大.Life.ToString();
-            label莎莉生命.Text = 莎莉.Life.ToString();
-            label饅頭人生命.Text = 饅頭人.Life.ToString();
+            label兔兔生命.Text = Game.兔兔.Life.ToString();
+            label熊大生命.Text = Game.熊大.Life.ToString();
+            label莎莉生命.Text = Game.莎莉.Life.ToString();
+            label饅頭人生命.Text = Game.饅頭人.Life.ToString();
 
-            label兔兔狀態.Text = statusCheck(兔兔.Status);
-            label熊大狀態.Text = statusCheck(熊大.Status);
-            label莎莉狀態.Text = statusCheck(莎莉.Status);
-            label饅頭人狀態.Text = statusCheck(饅頭人.Status);
+            label兔兔狀態.Text = statusCheck(Game.兔兔.Status);
+            label熊大狀態.Text = statusCheck(Game.熊大.Status);
+            label莎莉狀態.Text = statusCheck(Game.莎莉.Status);
+            label饅頭人狀態.Text = statusCheck(Game.饅頭人.Status);
         }
 
         private string statusCheck(bool status)
@@ -77,15 +64,15 @@ namespace ObserverPattern
 
         private void pictureBox兔兔_Click(object sender, EventArgs e)
         {
-            if (Team.TeamPartner.Contains(兔兔))
+            if (Game.Team.TeamPartner.Contains(Game.兔兔))
             {
-                Team.RemovePlayer(兔兔);
-                richTextBox1.Text += string.Format("玩家{0}離開組隊，目前隊伍中共有{1}人\n", 兔兔.Name, Team.TeamPartner.Count);
+                Game.Team.RemovePlayer(Game.兔兔);
+                richTextBox1.Text += string.Format("玩家{0}離開組隊，目前隊伍中共有{1}人\n", Game.兔兔.Name, Game.Team.TeamPartner.Count);
             }
             else
             {
-                Team.AddPlayer(兔兔);
-                richTextBox1.Text += string.Format("玩家{0}加入隊伍，目前隊伍中共有{1}人\n", 兔兔.Name, Team.TeamPartner.Count);
+                Game.Team.AddPlayer(Game.兔兔);
+                richTextBox1.Text += string.Format("玩家{0}加入隊伍，目前隊伍中共有{1}人\n", Game.兔兔.Name, Game.Team.TeamPartner.Count);
             }
             
 
@@ -114,43 +101,43 @@ namespace ObserverPattern
 
         private void pictureBox莎莉_Click(object sender, EventArgs e)
         {
-            if (Team.TeamPartner.Contains(莎莉))
+            if (Game.Team.TeamPartner.Contains(Game.莎莉))
             {
-                Team.RemovePlayer(莎莉);
-                richTextBox1.Text += string.Format("玩家{0}離開組隊，目前隊伍中共有{1}人\n", 莎莉.Name, Team.TeamPartner.Count);
+                Game.Team.RemovePlayer(Game.莎莉);
+                richTextBox1.Text += string.Format("玩家{0}離開組隊，目前隊伍中共有{1}人\n", Game.莎莉.Name, Game.Team.TeamPartner.Count);
             }
             else
             {
-                Team.AddPlayer(莎莉);
-                richTextBox1.Text += string.Format("玩家{0}加入隊伍，目前隊伍中共有{1}人\n", 莎莉.Name, Team.TeamPartner.Count);
+                Game.Team.AddPlayer(Game.莎莉);
+                richTextBox1.Text += string.Format("玩家{0}加入隊伍，目前隊伍中共有{1}人\n", Game.莎莉.Name, Game.Team.TeamPartner.Count);
             }
         }
 
         private void pictureBox熊大_Click(object sender, EventArgs e)
         {
-            if (Team.TeamPartner.Contains(熊大))
+            if (Game.Team.TeamPartner.Contains(Game.熊大))
             {
-                Team.RemovePlayer(熊大);
-                richTextBox1.Text += string.Format("玩家{0}離開組隊，目前隊伍中共有{1}人\n", 熊大.Name, Team.TeamPartner.Count);
+                Game.Team.RemovePlayer(Game.熊大);
+                richTextBox1.Text += string.Format("玩家{0}離開組隊，目前隊伍中共有{1}人\n", Game.熊大.Name, Game.Team.TeamPartner.Count);
             }
             else
             {
-                Team.AddPlayer(熊大);
-                richTextBox1.Text += string.Format("玩家{0}加入隊伍，目前隊伍中共有{1}人\n", 熊大.Name, Team.TeamPartner.Count);
+                Game.Team.AddPlayer(Game.熊大);
+                richTextBox1.Text += string.Format("玩家{0}加入隊伍，目前隊伍中共有{1}人\n", Game.熊大.Name, Game.Team.TeamPartner.Count);
             }
         }
 
         private void pictureBox饅頭人_Click(object sender, EventArgs e)
         {
-            if (Team.TeamPartner.Contains(饅頭人))
+            if (Game.Team.TeamPartner.Contains(Game.饅頭人))
             {
-                Team.RemovePlayer(饅頭人);
-                richTextBox1.Text += string.Format("玩家{0}離開組隊，目前隊伍中共有{1}人\n", 饅頭人.Name, Team.TeamPartner.Count);
+                Game.Team.RemovePlayer(Game.饅頭人);
+                richTextBox1.Text += string.Format("玩家{0}離開組隊，目前隊伍中共有{1}人\n", Game.饅頭人.Name, Game.Team.TeamPartner.Count);
             }
             else
             {
-                Team.AddPlayer(饅頭人);
-                richTextBox1.Text += string.Format("玩家{0}加入隊伍，目前隊伍中共有{1}人\n", 饅頭人.Name, Team.TeamPartner.Count);
+                Game.Team.AddPlayer(Game.饅頭人);
+                richTextBox1.Text += string.Format("玩家{0}加入隊伍，目前隊伍中共有{1}人\n", Game.饅頭人.Name, Game.Team.TeamPartner.Count);
             }
         }
 
