@@ -253,7 +253,6 @@
             this.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox兔兔)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox莎莉)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox熊大)).EndInit();

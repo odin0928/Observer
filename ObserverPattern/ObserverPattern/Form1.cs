@@ -18,8 +18,6 @@ namespace ObserverPattern
         {
             InitializeComponent();
             Game = new GameControler();
-
-
             UpdateStatus();
         }
 
@@ -30,6 +28,7 @@ namespace ObserverPattern
                 if (!p.Status)
                 {
                     Game.RemovePlayer(p);
+                    Game.Team.TeamPartner.Remove(p);
                     break;
                 }
             }
@@ -57,27 +56,6 @@ namespace ObserverPattern
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox兔兔_Click(object sender, EventArgs e)
-        {
-            if (Game.Team.TeamPartner.Contains(Game.兔兔))
-            {
-                Game.Team.RemovePlayer(Game.兔兔);
-                richTextBox1.Text += string.Format("玩家{0}離開組隊，目前隊伍中共有{1}人\n", Game.兔兔.Name, Game.Team.TeamPartner.Count);
-            }
-            else
-            {
-                Game.Team.AddPlayer(Game.兔兔);
-                richTextBox1.Text += string.Format("玩家{0}加入隊伍，目前隊伍中共有{1}人\n", Game.兔兔.Name, Game.Team.TeamPartner.Count);
-            }
-            
-
-        }
-
         private void buttonAtteck_Click(object sender, EventArgs e)
         {
             Random random = new Random();
@@ -92,23 +70,37 @@ namespace ObserverPattern
 
         private void ShowMessage()
         {
-            this.richTextBox1.Clear();
             foreach (Player p in Game.observers)
             {
                 this.richTextBox1.Text += p.SayMessage;
             }
         }
 
+        private void pictureBox兔兔_Click(object sender, EventArgs e)
+        {
+            if (Game.Team.TeamPartner.Contains(Game.兔兔))
+            {
+                Game.Team.TeamPartner.Remove(Game.兔兔);
+                richTextBox1.Text += string.Format("玩家{0}離開組隊，目前隊伍中共有{1}人\n", Game.兔兔.Name, Game.Team.TeamPartner.Count);
+            }
+            else
+            {
+                Game.Team.TeamPartner.Add(Game.兔兔);
+                richTextBox1.Text += string.Format("玩家{0}加入隊伍，目前隊伍中共有{1}人\n", Game.兔兔.Name, Game.Team.TeamPartner.Count);
+            }
+
+        }
+
         private void pictureBox莎莉_Click(object sender, EventArgs e)
         {
             if (Game.Team.TeamPartner.Contains(Game.莎莉))
             {
-                Game.Team.RemovePlayer(Game.莎莉);
+                Game.Team.TeamPartner.Remove(Game.莎莉);
                 richTextBox1.Text += string.Format("玩家{0}離開組隊，目前隊伍中共有{1}人\n", Game.莎莉.Name, Game.Team.TeamPartner.Count);
             }
             else
             {
-                Game.Team.AddPlayer(Game.莎莉);
+                Game.Team.TeamPartner.Add(Game.莎莉);
                 richTextBox1.Text += string.Format("玩家{0}加入隊伍，目前隊伍中共有{1}人\n", Game.莎莉.Name, Game.Team.TeamPartner.Count);
             }
         }
@@ -117,12 +109,12 @@ namespace ObserverPattern
         {
             if (Game.Team.TeamPartner.Contains(Game.熊大))
             {
-                Game.Team.RemovePlayer(Game.熊大);
+                Game.Team.TeamPartner.Remove(Game.熊大);
                 richTextBox1.Text += string.Format("玩家{0}離開組隊，目前隊伍中共有{1}人\n", Game.熊大.Name, Game.Team.TeamPartner.Count);
             }
             else
             {
-                Game.Team.AddPlayer(Game.熊大);
+                Game.Team.TeamPartner.Add(Game.熊大);
                 richTextBox1.Text += string.Format("玩家{0}加入隊伍，目前隊伍中共有{1}人\n", Game.熊大.Name, Game.Team.TeamPartner.Count);
             }
         }
@@ -131,12 +123,12 @@ namespace ObserverPattern
         {
             if (Game.Team.TeamPartner.Contains(Game.饅頭人))
             {
-                Game.Team.RemovePlayer(Game.饅頭人);
+                Game.Team.TeamPartner.Remove(Game.饅頭人);
                 richTextBox1.Text += string.Format("玩家{0}離開組隊，目前隊伍中共有{1}人\n", Game.饅頭人.Name, Game.Team.TeamPartner.Count);
             }
             else
             {
-                Game.Team.AddPlayer(Game.饅頭人);
+                Game.Team.TeamPartner.Add(Game.饅頭人);
                 richTextBox1.Text += string.Format("玩家{0}加入隊伍，目前隊伍中共有{1}人\n", Game.饅頭人.Name, Game.Team.TeamPartner.Count);
             }
         }

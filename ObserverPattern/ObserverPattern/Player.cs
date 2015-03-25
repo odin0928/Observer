@@ -49,6 +49,7 @@ namespace ObserverPattern
                         SayMessage = string.Format("{0}沒有隊友，好慘，生命力剩下{1}\n", this.Name, this.Life);
                     }
                 }
+                Notify();
             }
         }
         public void ReciveHelp(IObserver SayHelper)
@@ -80,6 +81,7 @@ namespace ObserverPattern
         {
             foreach (var t in MyTeamPartner.TeamPartner)
             {
+                if(t.Name!=this.Name)
                 t.ReciveHelp(this);
             }
         }

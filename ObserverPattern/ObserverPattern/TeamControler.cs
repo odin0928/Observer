@@ -24,15 +24,5 @@ namespace ObserverPattern
         {
             TeamPartner = new List<IObserver>();
         }
-
-        public void AddPlayer(IObserver observer)
-        {
-            TeamPartner.Add(observer);
-        }
-
-        public void RemovePlayer(IObserver observer)
-        {
-            TeamPartner.Remove(observer);
-        }
     }
 }
